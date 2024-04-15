@@ -45,16 +45,16 @@ export default function ProjectsList({data}: { data: any }) {
                                     <h1>{project.properties.name?.title[0]?.plain_text || 'null'}</h1>
                                     <p>{project.properties.description?.rich_text[0]?.plain_text || 'null'}</p>
                                 </div>
-                                <div className={styles.awards}>
-                                    {project.properties.awards?.multi_select?.map((award: any) => (
-                                        <div key={award.id} className={styles.award}>
-                                        <img src={'/icons/social_leaderboard.svg'} alt={'award'} width={16}
-                                             height={16}/>
-                                            {award.name}
-                                            <br/>
-                                    </div>
-                                    ))}
-                                </div>
+                                {/*<div className={styles.awards}>*/}
+                                {/*    {project.properties.awards?.multi_select?.map((award: any) => (*/}
+                                {/*        <div key={award.id} className={styles.award}>*/}
+                                {/*        <img src={'/icons/social_leaderboard.svg'} alt={'award'} width={16}*/}
+                                {/*             height={16}/>*/}
+                                {/*            {award.name}*/}
+                                {/*            <br/>*/}
+                                {/*    </div>*/}
+                                {/*    ))}*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                     ))}

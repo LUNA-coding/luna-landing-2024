@@ -96,6 +96,10 @@
     gap: 28px;
 }
 
+.project img {
+    object-fit: contain;
+}
+
 .info {
     display: flex;
     flex-direction: column;
