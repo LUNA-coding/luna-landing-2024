@@ -1,12 +1,12 @@
 import styles from "./page.module.css";
 import MembersIntro from "@/components/members/intro/MembersIntro";
-import MembersList from "@/components/members/list/MembersPage";
+import MembersListPage from "@/components/members/list/MembersListPage";
 
 export default function Members() {
     return (
         <div className={styles.container}>
             <MembersIntro />
-            <MembersList />
+            <MembersListPage />
         </div>
     );
 }

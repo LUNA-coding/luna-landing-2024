@@ -32,7 +32,7 @@ export async function fetchMembers() {
     return await res.json();
 }
 
-export default function MembersPage() {
+export default function MembersListPage() {
     const data = use(fetchMembers());
 
     return <MembersList data={data} />;
