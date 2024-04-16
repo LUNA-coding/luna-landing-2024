@@ -37,7 +37,7 @@ export default function ProjectsList({data}: { data: any }) {
                         <Link target={'_blank'} key={project.id} href={project.public_url}>
                             <div className={styles.project}>
                                 <img
-                                    src={project.properties.image?.files[0]?.file?.url || '/images/members/default.svg'}
+                                    src={project.properties.image?.files[0]?.file?.url || '/images/projects/default.svg'}
                                     alt={project.properties.name?.title[0]?.plain_text || 'null'}
                                     width={140}
                                     height={140}

@@ -35,7 +35,7 @@ export default function AwardsList({data}: { data: any }) {
                     {filteredData?.map((award: any) => (
                         <div key={award.id} className={styles.award}>
                             <img
-                                src={award.properties.image?.files[0]?.file?.url || '/images/members/default.svg'}
+                                src={award.properties.image?.files[0]?.file?.url || '/images/awards/default.svg'}
                                 alt={award.properties.name?.title[0]?.plain_text || 'null'}
                             />
                             <div className={styles.info}>
