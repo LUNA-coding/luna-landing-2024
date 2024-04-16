@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
 import styles from './list.module.css';
 
 const menuItems = ['LUNA 7기', 'LUNA 6기', 'LUNA 5기', 'LUNA 4기', 'LUNA 3기', 'LUNA 2기', 'LUNA 1기', '명예 멤버'];
 
-export default function MembersList({ data }: { data: any }) {
+export default function MembersList({data}: { data: any }) {
     const [activeMenu, setActiveMenu] = useState('LUNA 7기');
 
     const handleMenuClick = (menu: string) => {
@@ -32,27 +32,32 @@ export default function MembersList({ data }: { data: any }) {
                     </div>
                 </div>
                 <div className={styles.list}>
-                    {filteredData?.map((member: any) => (
-                        <div key={member.id} className={styles.member}>
-                            <h2>{member.properties.position?.select?.name || 'null'}</h2>
-                            <img
-                                src={member.properties.image?.files[0]?.file?.url || '/images/members/default.svg'}
-                                alt={member.properties.name?.title[0]?.plain_text || 'null'}
-                                width={140}
-                                height={140}
-                            />
-                            <div className={styles.info}>
-                                <h1>{member.properties.name?.title[0]?.plain_text || 'null'}</h1>
-                                <h2>
-                                    {member.properties.generation?.select?.name || 'null'}{' '}
-                                    {member.properties.class?.select?.name || 'null'}
-                                </h2>
+                    {filteredData?.map((member: any) => {
+                        const generation = parseInt(member.properties.generation?.select?.name.replace('기', ''));
+                        const imageUrl = member.properties.generation?.select?.name == null || generation < 21 || member.properties.generation?.select?.name == 'AVHS' ? '/images/members/default.svg' : member.properties.image?.files[0]?.file?.url;
+
+                        return (
+                            <div key={member.id} className={styles.member}>
+                                <h2>{member.properties.position?.select?.name || 'null'}</h2>
+                                <img
+                                    src={imageUrl || '/images/members/default.svg'}
+                                    alt={member.properties.name?.title[0]?.plain_text || 'null'}
+                                    width={140}
+                                    height={140}
+                                />
+                                <div className={styles.info}>
+                                    <h1>{member.properties.name?.title[0]?.plain_text || 'null'}</h1>
+                                    <h2>
+                                        {member.properties.generation?.select?.name || 'null'}{' '}
+                                        {member.properties.class?.select?.name || 'null'}
+                                    </h2>
+                                </div>
+                                <div className={styles.comment}>
+                                    <p>{member.properties.description?.rich_text[0]?.plain_text || 'null'}</p>
+                                </div>
                             </div>
-                            <div className={styles.comment}>
-                                <p>{member.properties.description?.rich_text[0]?.plain_text || 'null'}</p>
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </div>
