@@ -14,7 +14,7 @@ export default function QnaList({data}: { data: any }) {
         <div className={styles.container}>
             <div className={styles.content}>
                 <div className={styles.list}>
-                    {data.results.map((qna: any, index: number) => (
+                    {data?.results?.map((qna: any, index: number) => (
                         <div key={qna.id} className={`${styles.qna} ${activeIndex === index ? styles.active : ''}`} onClick={() => handleClick(index)}>
                             <div className={`${styles.question} ${activeIndex === index ? styles.active : ''}`}>
                                 <h1>Q</h1>
