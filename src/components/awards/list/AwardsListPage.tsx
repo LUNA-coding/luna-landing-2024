@@ -1,8 +1,8 @@
 import {use} from 'react';
-import QnaList from './QnaList'
+import AwardsList from './AwardsList'
 
-export async function fetchQna() {
-    const res = await fetch(`https://api.notion.com/v1/databases/${process.env.QNA_DATABASE_ID}/query`, {
+export async function fetchAwards() {
+    const res = await fetch(`https://api.notion.com/v1/databases/${process.env.AWARDS_DATABASE_ID}/query`, {
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -14,8 +14,8 @@ export async function fetchQna() {
         body: JSON.stringify({
             sorts: [
                 {
-                    property: 'order',
-                    direction: 'ascending'
+                    property: 'date',
+                    direction: 'descending'
                 },
             ],
         })
@@ -24,8 +24,8 @@ export async function fetchQna() {
     return await res.json();
 }
 
-export default function QnaListPage() {
-    const data = use(fetchQna());
+export default function AwardsListPage() {
+    const data = use(fetchAwards());
 
-    return <QnaList data={data}/>;
+    return <AwardsList data={data}/>;
 }
