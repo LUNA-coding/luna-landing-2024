@@ -34,7 +34,6 @@
     padding: 28px 36px;
     border: 2px solid rgba(58, 58, 96, 0.10);
     background: #FAFAFF;
-    transition: none;
 }
 
 .qna.active {
@@ -62,7 +61,6 @@
     line-height: normal;
     letter-spacing: -0.6px;
     opacity: 0.6;
-    transition: none;
 }
 
 .question p {
@@ -73,7 +71,6 @@
     line-height: normal;
     letter-spacing: -0.6px;
     opacity: 0.6;
-    transition: none;
 }
 
 .question.active h1, .question.active p {

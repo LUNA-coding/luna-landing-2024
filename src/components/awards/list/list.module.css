@@ -52,7 +52,6 @@
     padding: 12px 24px;
     border-radius: 36px;
     border: 1px solid rgba(58, 58, 96, 0.10);
-    transition: none;
 }
 
 .item p {
@@ -64,7 +63,6 @@
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.42px;
-    transition: none;
 }
 
 .active {
