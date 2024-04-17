@@ -14,14 +14,14 @@ export default function HomeProjects({ data }: { data: any }) {
     const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
-        const handleWheel = (event: WheelEvent) => {
-            setScrollPosition((prevPosition) => prevPosition + event.deltaY);
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
         };
 
-        window.addEventListener('wheel', handleWheel);
+        window.addEventListener('scroll', handleScroll);
 
         return () => {
-            window.removeEventListener('wheel', handleWheel);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
