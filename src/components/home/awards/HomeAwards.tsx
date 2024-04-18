@@ -21,7 +21,6 @@ export default function HomeAwards() {
 
     return (
         <div className={styles.container}>
-        <h1>Awards</h1>
         </div>
     );
 }
