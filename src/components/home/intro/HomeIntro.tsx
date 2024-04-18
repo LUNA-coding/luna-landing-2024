@@ -1,25 +1,9 @@
-import Image from "next/image";
+'use client'
+
 import styles from "./intro.module.css";
 import Scroll from "@/components/scroll/Scroll";
-import {use} from "react";
-
-export async function fetchInformation() {
-    const res = await fetch(`https://api.notion.com/v1/databases/${process.env.INFORMATION_DATABASE_ID}/query`, {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            Accept: 'application/json',
-            'Notion-Version': '2022-02-22',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.NOTION_API_KEY}`
-        },
-    });
-
-    return await res.json();
-}
-
-export default function HomeIntro() {
-    const data = use(fetchInformation());
+import Spline from '@splinetool/react-spline';
+export default function HomeIntro({data}: {data: any}) {
 
     return (
         <div className={styles.container}>
@@ -36,10 +20,10 @@ export default function HomeIntro() {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <Image src="/icons/logo.svg" alt="luna" width={500} height={500} />
+                    <Spline scene="/model/luna.splinecode" />
                 </div>
             </div>
-            <Scroll />
+            <Scroll/>
         </div>
     );
 }
