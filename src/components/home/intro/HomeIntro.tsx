@@ -1,14 +1,32 @@
 import Image from "next/image";
 import styles from "./intro.module.css";
 import Scroll from "@/components/scroll/Scroll";
+import {use} from "react";
+
+export async function fetchInformation() {
+    const res = await fetch(`https://api.notion.com/v1/databases/${process.env.INFORMATION_DATABASE_ID}/query`, {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            Accept: 'application/json',
+            'Notion-Version': '2022-02-22',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.NOTION_API_KEY}`
+        },
+    });
+
+    return await res.json();
+}
 
 export default function HomeIntro() {
+    const data = use(fetchInformation());
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <div className={styles.left}>
                     <div className={styles.title}>
-                        <h2>세상을 비추는 달,</h2>
+                        <h2>{data?.results[0]?.properties.moto.title[0].plain_text || 'null'},</h2>
                         <h1>LUNA</h1>
                     </div>
                     <div className={styles.description}>

@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import styles from './projects.module.css';
 import Link from 'next/link';
+import {info} from "next/dist/build/output/log";
 
 const ids = ['first', 'second', 'third'];
 
-export default function HomeProjects({ data }: { data: any }) {
+export default function HomeProjects({ data, information }: { data: any, information: any }) {
     const projectData = data?.results.map((project: any) => ({
         name: project.properties.name.title[0].plain_text,
     }));
@@ -38,7 +39,7 @@ export default function HomeProjects({ data }: { data: any }) {
                             className={styles.project}
                             style={{
                                 transform: `translateX(${
-                                    i === 1 ? scrollPosition * 0.5 : -scrollPosition * 0.5
+                                    i === 1 ? scrollPosition * 0.2 : -scrollPosition * 0.2
                                 }px)`,
                             }}
                         >
@@ -56,7 +57,7 @@ export default function HomeProjects({ data }: { data: any }) {
                 <div className={styles.projectZone}>{projects}</div>
                 <div className={styles.right}>
                     <h1>
-                        <strong>72개의 프로젝트</strong>를 진행하며
+                        <strong>{information?.results[0]?.properties.projects.number}개의 프로젝트</strong>를 진행하며
                         <br />
                         사회적인 가치를 창출해왔습니다.
                     </h1>

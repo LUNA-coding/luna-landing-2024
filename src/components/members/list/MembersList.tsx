@@ -1,18 +1,40 @@
 'use client';
 
-import {useState} from 'react';
+import { useState, useMemo } from 'react';
 import styles from './list.module.css';
 
-const menuItems = ['LUNA 7기', 'LUNA 6기', 'LUNA 5기', 'LUNA 4기', 'LUNA 3기', 'LUNA 2기', 'LUNA 1기', '명예 멤버'];
+interface Member {
+    id: string;
+    properties: {
+        position?: { select?: { name?: string } };
+        image?: { files: { file?: { url?: string } }[] };
+        name?: { title: { plain_text?: string }[] };
+        generation?: { select?: { name?: string } };
+        class?: { select?: { name?: string } };
+        description?: { rich_text: { plain_text?: string }[] };
+        lunaGeneration?: { select?: { name?: string } };
+    };
+}
 
-export default function MembersList({data}: { data: any }) {
+interface MembersListProps {
+    data: {
+        results: Member[];
+    };
+}
+
+export default function MembersList({ data }: MembersListProps) {
     const [activeMenu, setActiveMenu] = useState('LUNA 7기');
+
+    const menuItems = useMemo(() => {
+        const generations = new Set(data?.results?.map((member) => member.properties.lunaGeneration?.select?.name));
+        return Array.from(generations);
+    }, [data]);
 
     const handleMenuClick = (menu: string) => {
         setActiveMenu(menu);
     };
 
-    const filteredData = data?.results?.filter((member: any) => member.properties.lunaGeneration?.select?.name === activeMenu);
+    const filteredData = data?.results?.filter((member) => member.properties.lunaGeneration?.select?.name === activeMenu);
 
     return (
         <div className={styles.container}>
@@ -24,7 +46,7 @@ export default function MembersList({data}: { data: any }) {
                             <div
                                 key={menu}
                                 className={`${styles.item} ${activeMenu === menu ? styles.active : ''}`}
-                                onClick={() => handleMenuClick(menu)}
+                                onClick={() => handleMenuClick(menu ?? '')}
                             >
                                 <p>{menu}</p>
                             </div>
@@ -32,8 +54,8 @@ export default function MembersList({data}: { data: any }) {
                     </div>
                 </div>
                 <div className={styles.list}>
-                    {filteredData?.map((member: any) => {
-                        const generation = parseInt(member.properties.generation?.select?.name.replace('기', ''));
+                    {filteredData?.map((member) => {
+                        const generation = parseInt(member.properties.generation?.select?.name?.replace('기', '') ?? '');
                         const imageUrl = member.properties.generation?.select?.name == null || generation < 21 || member.properties.generation?.select?.name == 'AVHS' ? '/images/members/default.svg' : member.properties.image?.files[0]?.file?.url;
 
                         return (

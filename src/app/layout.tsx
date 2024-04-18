@@ -7,7 +7,7 @@ import Footer from "@/components/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "세상을 비추는 달, LUNA",
+  title: "IT 소셜벤처 동아리, LUNA",
   description: "한국디지털미디어고등학교의 IT 소셜벤처 동아리.",
     keywords: "루나,LUNA,디미고,DIMIGO,동아리,IT소셜벤처",
 };

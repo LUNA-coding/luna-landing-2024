@@ -1,19 +1,40 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import styles from './list.module.css';
 import Link from "next/link";
 
-const menuItems = ['2023', '2022', '2021', '2020', '2019', '2018'];
+interface Project {
+    id: string;
+    public_url: string;
+    properties: {
+        year?: { select?: { name: string; }; };
+        image?: { files: { file?: { url: string; }; }[]; };
+        name?: { title: { plain_text: string; }[]; };
+        description?: { rich_text: { plain_text: string; }[]; };
+        awards?: { multi_select: { id: string; name: string; }[]; };
+    };
+}
 
-export default function ProjectsList({data}: { data: any }) {
-    const [activeMenu, setActiveMenu] = useState('2023');
+interface ProjectsListProps {
+    data: {
+        results: Project[];
+    };
+}
+
+export default function ProjectsList({data}: ProjectsListProps) {
+    const menuItems = useMemo(() => {
+        const years = new Set(data?.results?.map((project) => project.properties.year?.select?.name));
+        return Array.from(years);
+    }, [data]);
+
+    const [activeMenu, setActiveMenu] = useState(menuItems[0]);
 
     const handleMenuClick = (menu: string) => {
         setActiveMenu(menu);
     };
 
-    const filteredData = data?.results?.filter((project: any) => project.properties.year?.select?.name === activeMenu);
+    const filteredData = data?.results?.filter((project) => project.properties.year?.select?.name === activeMenu);
 
     return (
         <div className={styles.container}>
@@ -25,7 +46,7 @@ export default function ProjectsList({data}: { data: any }) {
                             <div
                                 key={menu}
                                 className={`${styles.item} ${activeMenu === menu ? styles.active : ''}`}
-                                onClick={() => handleMenuClick(menu)}
+                                onClick={() => handleMenuClick(menu ?? '')}
                             >
                                 <p>{menu}년</p>
                             </div>
@@ -33,7 +54,7 @@ export default function ProjectsList({data}: { data: any }) {
                     </div>
                 </div>
                 <div className={styles.list}>
-                    {filteredData?.map((project: any) => (
+                    {filteredData?.map((project) => (
                         <Link target={'_blank'} key={project.id} href={project.public_url}>
                             <div className={styles.project}>
                                 <img
