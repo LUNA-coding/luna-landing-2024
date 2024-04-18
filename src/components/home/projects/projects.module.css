@@ -25,6 +25,7 @@
     letter-spacing: -0.96px;
     max-width: 1200px;
     padding: 0 30px;
+    opacity: 0.9;
 }
 
 #left {
@@ -48,6 +49,7 @@
     font-weight: 700;
     line-height: 180%;
     letter-spacing: -0.96px;
+    opacity: 1;
 }
 
 .right a {

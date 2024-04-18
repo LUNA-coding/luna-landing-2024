@@ -1,18 +1,40 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import styles from './list.module.css';
 
-const menuItems = ['2023', '2022', '2021', '2020', '2019', '2018', '2017'];
+interface Award {
+    id: string;
+    properties: {
+        year?: { select?: { name: string; }; };
+        image?: { files: { file?: { url: string; }; }[]; };
+        name?: { title: { plain_text: string; }[]; };
+        prize?: { rich_text: { plain_text: string; }[]; };
+        team?: { rich_text: { plain_text: string; }[]; };
+        members?: { multi_select: { name: string; }[]; };
+        date?: { date?: { start: string; end?: string; }; };
+    };
+}
 
-export default function AwardsList({data}: { data: any }) {
-    const [activeMenu, setActiveMenu] = useState('2023');
+interface AwardsListProps {
+    data: {
+        results: Award[];
+    };
+}
+
+export default function AwardsList({data}: AwardsListProps) {
+    const menuItems = useMemo(() => {
+        const years = new Set(data?.results?.map((award) => award.properties.year?.select?.name));
+        return Array.from(years).sort().reverse();
+    }, [data]);
+
+    const [activeMenu, setActiveMenu] = useState(menuItems[0]);
 
     const handleMenuClick = (menu: string) => {
         setActiveMenu(menu);
     };
 
-    const filteredData = data?.results?.filter((award: any) => award.properties.year?.select?.name === activeMenu);
+    const filteredData = data?.results?.filter((award) => award.properties.year?.select?.name === activeMenu);
 
     return (
         <div className={styles.container}>
@@ -24,7 +46,7 @@ export default function AwardsList({data}: { data: any }) {
                             <div
                                 key={menu}
                                 className={`${styles.item} ${activeMenu === menu ? styles.active : ''}`}
-                                onClick={() => handleMenuClick(menu)}
+                                onClick={() => handleMenuClick(menu ?? '')}
                             >
                                 <p>{menu}년</p>
                             </div>
@@ -32,7 +54,7 @@ export default function AwardsList({data}: { data: any }) {
                     </div>
                 </div>
                 <div className={styles.list}>
-                    {filteredData?.map((award: any) => (
+                    {filteredData?.map((award) => (
                         <div key={award.id} className={styles.award}>
                             <img
                                 src={award.properties.image?.files[0]?.file?.url || '/images/awards/default.svg'}
@@ -47,12 +69,10 @@ export default function AwardsList({data}: { data: any }) {
                                     <p>{award.properties.team?.rich_text[0]?.plain_text || 'null'}</p>
                                     <div className={styles.description}>
                                         <p>
-                                            {award.properties.members?.multi_select.map((tag: {
-                                                name: any;
-                                            }, index: number) => (
+                                            {award.properties.members?.multi_select.map((tag, index) => (
                                                 <>
                                                     {tag.name}
-                                                    {index !== award.properties.members.multi_select.length - 1 && ', '}
+                                                    {index !== award.properties.members!.multi_select.length - 1 && ', '}
                                                 </>
                                             ))}
                                         </p>
