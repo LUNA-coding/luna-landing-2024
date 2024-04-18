@@ -36,6 +36,9 @@ export default function MembersList({ data }: MembersListProps) {
 
     const filteredData = data?.results?.filter((member) => member.properties.lunaGeneration?.select?.name === activeMenu);
 
+    const currentYear = new Date().getFullYear();
+    const senior = currentYear - 2003;
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -56,7 +59,7 @@ export default function MembersList({ data }: MembersListProps) {
                 <div className={styles.list}>
                     {filteredData?.map((member) => {
                         const generation = parseInt(member.properties.generation?.select?.name?.replace('기', '') ?? '');
-                        const imageUrl = member.properties.generation?.select?.name == null || generation < 21 || member.properties.generation?.select?.name == 'AVHS' ? '/images/members/default.svg' : member.properties.image?.files[0]?.file?.url;
+                        const imageUrl = member.properties.generation?.select?.name == null || generation < senior || member.properties.generation?.select?.name == 'AVHS' ? '/images/members/default.svg' : member.properties.image?.files[0]?.file?.url;
 
                         return (
                             <div key={member.id} className={styles.member}>
