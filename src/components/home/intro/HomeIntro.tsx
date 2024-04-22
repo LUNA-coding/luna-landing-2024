@@ -20,7 +20,7 @@ export default function HomeIntro({data}: {data: any}) {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <Spline scene="https://prod.spline.design/gbTGGh0hs7m84jRE/scene.splinecode" />
+                    <Spline scene="https://prod.spline.design/c35ziIXAiGXR8yaR/scene.splinecode" />
                 </div>
             </div>
             <Scroll/>
