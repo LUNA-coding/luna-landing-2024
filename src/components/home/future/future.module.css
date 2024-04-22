@@ -37,15 +37,15 @@
 
 .topLeft {
     position: absolute;
-    top: -80px;
-    left: -80px;
+    top: -100px;
+    left: -50px;
     animation: moveUpDown 3s ease-in-out infinite;
 }
 
 .topRight {
     position: absolute;
-    top: -140px;
-    right: -140px;
+    top: -70px;
+    right: -120px;
     animation: moveUpDown 3s ease-in-out infinite;
     animation-delay: 0.2s;
 }
@@ -53,8 +53,8 @@
 .bottomLeft1 {
     z-index: 30;
     position: absolute;
-    bottom: -80px;
-    left: -80px;
+    bottom: 40px;
+    left: 90px;
     animation: moveUpDown 3s ease-in-out infinite;
     animation-delay: 0.4s;
 }
@@ -62,7 +62,7 @@
 .bottomLeft2 {
     z-index: 20;
     position: absolute;
-    bottom: -80px;
+    bottom: -70px;
     left: -80px;
     animation: moveUpDown 3s ease-in-out infinite;
     animation-delay: 0.4s;
@@ -70,8 +70,8 @@
 
 .bottomRight {
     position: absolute;
-    bottom: -215px;
-    right: -215px;
+    bottom: -240px;
+    right: -240px;
     animation: moveUpDown 3s ease-in-out infinite;
     animation-delay: 0.6s;
 }

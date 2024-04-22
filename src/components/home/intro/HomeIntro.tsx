@@ -3,8 +3,8 @@
 import styles from "./intro.module.css";
 import Scroll from "@/components/scroll/Scroll";
 import Spline from '@splinetool/react-spline';
-export default function HomeIntro({data}: {data: any}) {
 
+export default function HomeIntro({data}: {data: any}) {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -20,7 +20,7 @@ export default function HomeIntro({data}: {data: any}) {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <Spline scene="/model/luna.splinecode" />
+                    <Spline scene="https://prod.spline.design/gbTGGh0hs7m84jRE/scene.splinecode" />
                 </div>
             </div>
             <Scroll/>

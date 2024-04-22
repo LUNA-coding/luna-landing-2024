@@ -46,7 +46,7 @@ export default function HomeAwards( { data }: { data: any }) {
                         width={500}
                         height={330}
                         style={{
-                            transform: `translateY(-${scrollPosition * 0.2 - 350}px)`,
+                            transform: `translateY(-${scrollPosition * 0.2 - 250}px)`,
                         }}
                     />
                 </div>

@@ -6,7 +6,7 @@ import {use} from "react";
 export async function fetchInformation() {
     const res = await fetch(`https://api.notion.com/v1/databases/${process.env.INFORMATION_DATABASE_ID}/query`, {
         method: 'POST',
-        cache: 'no-cache',
+        cache: 'default',
         headers: {
             Accept: 'application/json',
             'Notion-Version': '2022-02-22',
