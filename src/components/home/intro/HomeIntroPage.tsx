@@ -5,7 +5,7 @@ import HomeIntro from "@/components/home/intro/HomeIntro";
 export async function fetchInformation() {
     const res = await fetch(`https://api.notion.com/v1/databases/${process.env.INFORMATION_DATABASE_ID}/query`, {
         method: 'POST',
-        cache: 'default',
+        cache: 'no-cache',
         headers: {
             Accept: 'application/json',
             'Notion-Version': '2022-02-22',
