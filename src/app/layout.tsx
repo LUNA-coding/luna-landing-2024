@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="kr">
+      <link rel='icon' href='/icons/logo.svg'/>
       <meta name="theme-color" content="#524B9B"/>
       <meta name="apple-mobile-web-app-status-bar-style" content="#524B9B"/>
       <body className={inter.className}>
