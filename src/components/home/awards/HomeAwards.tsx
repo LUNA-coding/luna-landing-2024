@@ -25,7 +25,7 @@ export default function HomeAwards( { data }: { data: any }) {
             <div className={styles.content}>
                 <div className={styles.left}>
                     <div className={styles.texts}>
-                        <h1><strong>{data?.results[0]?.properties.contests.number || 'null'}</strong>의 대회,<br/>
+                        <h1><strong>{data?.results[0]?.properties.contests.number || 'null'}</strong>개의 대회,<br/>
                             <strong>{data?.results[0]?.properties.rewards.number || 'null'}만원</strong>의 상금 및 지원금</h1>
                         <p>
                             루나는 사회 문제 해결 의지와 능력을 인정받고자 하였고, 그 결과<br/>

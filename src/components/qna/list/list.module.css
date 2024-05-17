@@ -34,6 +34,7 @@
     padding: 28px 36px;
     border: 2px solid rgba(58, 58, 96, 0.10);
     background: #FAFAFF;
+    cursor: pointer;
 }
 
 .qna.active {
